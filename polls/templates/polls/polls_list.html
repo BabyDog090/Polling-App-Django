@@ -8,16 +8,11 @@
             {% if messages %}
             <div class="messages">
                 {% for message in messages %}
-                Name</a>
-            <a class="btn btn-{% if 'date' in request.GET %}warning{% else %}primary{% endif %} mb-3" href="?date=True"
-                role="button"><i class="far fa-clock"></i> Date</a>
-            <a class="btn btn-{% if 'vote' in request.GET %}warning{% else %}primary{% endif %} mb-3" href="?vote=True"
-                role="button"><i class="fas fa-poll"></i> Vote</a>
-
-            <a class="btn btn-primary mb-3 float-right" href="{% url 'polls:add' %}" role="button">Add <i class="fas fa-plus"></i></a>
-
-            <form class="form-inline">
-                <div class="form-group mr-sm-2 mb-2">
+                <div {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
                     <input type="search" class="form-control" name="search" placeholder="Search" value={{ search_term }}>
                 </div>
                 <button type="submit" class="btn btn-primary mb-2"><i class="fas fa-search"></i></button>
