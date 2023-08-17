@@ -18,27 +18,6 @@ def seed_users(num_entries=10, overwrite=False):
     for _ in range(num_entries):
         first_name = fake.first_name()
         last_name = fake.last_name()
-        u = User.objects.create_user(
-            first_name=first_name,
-            last_name=last_name,
-            email=first_name + "." + last_name + "@fakermail.com",
-            username=first_name + last_name,
-            password="password"
-        )
-        count += 1
-        percent_complete = count / num_entries * 100
-        print(
-            "Adding {} new Users: {:.2f}%".format(
-                num_entries, percent_complete),
-            end='\r',
-            flush=True
-        )
-    print()
-
-
-def seed_polls(num_entries=10, choice_min=2, choice_max=5, overwrite=False):
-    """
-    Seeds num_entries poll with random users as owners
     Each poll will be seeded with # choices from choice_min to choice_max
     """
     if overwrite:
