@@ -3,12 +3,6 @@ from .models import Poll, Choice, Vote
 
 
 class ChoiceInline(admin.TabularInline):  # or admin.StackedInline for a different layout
-    model = Choice
-    extra = 1
-
-@admin.register(Poll)
-class PollAdmin(admin.ModelAdmin):
-    list_display = ["text", "owner", "pub_date", "active", "created_at"]
     search_fields = ["text", "owner__username"]
     list_filter = ["active", 'created_at', 'pub_date']
     date_hierarchy = "pub_date"
