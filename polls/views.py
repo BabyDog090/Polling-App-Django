@@ -3,6 +3,12 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models import Count
 from django.contrib import messages
+from .models import Poll, Choice, Vote
+from .forms import PollAddForm, EditPollForm, ChoiceAddForm
+from django.http import HttpResponse
+
+
+@login_required()
 def polls_list(request):
     all_polls = Poll.objects.all()
     search_term = ''

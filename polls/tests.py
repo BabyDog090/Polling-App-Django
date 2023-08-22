@@ -3,6 +3,12 @@ from django.contrib.auth.models import User
 from django.test import TestCase
 from django.utils import timezone
 
+from .models import Poll, Vote
+
+
+class PollModelTest(TestCase):
+    def test_user_can_vote(self):
+        user = User.objects.create_user('john')
         poll = Poll.objects.create(owner=user)
         self.assertTrue(poll.user_can_vote(user))
 

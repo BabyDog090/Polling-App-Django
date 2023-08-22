@@ -3,16 +3,11 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from .forms import UserRegistrationForm
 from django.contrib import messages
-        password = request.POST.get('password')
-        user = authenticate(username=username, password=password)
+from django.http import HttpResponse
 
-        if user is not None:
-            login(request, user)
-            redirect_url = request.GET.get('next', 'home')
-            return redirect(redirect_url)
-        else:
-            messages.error(request, "Username Or Password is incorrect!",
-                           extra_tags='alert alert-warning alert-dismissible fade show')
+
+def login_user(request):
+    if request.method == 'POST':
 
     return render(request, 'accounts/login.html')
 
