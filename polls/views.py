@@ -13,6 +13,22 @@ def polls_list(request):
     all_polls = Poll.objects.all()
     search_term = ''
     if 'name' in request.GET:
+        all_polls = all_polls.order_by('text')
+
+    if 'date' in request.GET:
+        all_polls = all_polls.order_by('pub_date')
+
+    if 'vote' in request.GET:
+        all_polls = all_polls.annotate(Count('vote')).order_by('vote__count')
+
+    if 'search' in request.GET:
+        search_term = request.GET['search']
+        all_polls = all_polls.filter(text__icontains=search_term)
+
+    paginator = Paginator(all_polls, 6)  # Show 6 contacts per page
+    page = request.GET.get('page')
+    polls = paginator.get_page(page)
+
     get_dict_copy = request.GET.copy()
     params = get_dict_copy.pop('page', True) and get_dict_copy.urlencode()
 
