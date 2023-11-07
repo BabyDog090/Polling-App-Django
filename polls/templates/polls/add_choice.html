@@ -8,17 +8,6 @@
             <h2>Update choice</h2>
             {% else %}
             <h2>Add new choice</h2>
-            {% endif %}
-            {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
-                {% endfor %}
-            </ul>
-            {% endif %}
-            <form action="" method="POST">
-                {% csrf_token %}
-                {% for field in form %}
                 <div class="form-group">
                     {{ field.errors }}
                     {{ field.label_tag }}
