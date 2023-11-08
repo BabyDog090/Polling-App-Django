@@ -13,15 +13,3 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                {% endfor %}
-            </div>
-            {% endif %}
-            <form action="" method="POST">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit" class="btn btn-primary">Sign Up</button>
-            </form>
-        </div>
-    </div>
-</div>
-{% endblock %}

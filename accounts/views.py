@@ -8,16 +8,11 @@ from django.http import HttpResponse
 
 def login_user(request):
     if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(username=username, password=password)
 
-    return render(request, 'accounts/login.html')
-
-
-def logout_user(request):
-    logout(request)
-    return redirect('home')
-
-
-def create_user(request):
+        if user is not None:
     if request.method == 'POST':
         check1 = False
         check2 = False
