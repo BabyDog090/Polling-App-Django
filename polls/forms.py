@@ -13,7 +13,13 @@ class PollAddForm(forms.ModelForm):
         model = Poll
         fields = ['text', 'choice1', 'choice2']
         widgets = {
-        fields = ['choice_text', ]
-        widgets = {
-            'choice_text': forms.TextInput(attrs={'class': 'form-control', })
+            'text': forms.Textarea(attrs={'class': 'form-control', 'rows': 5, 'cols': 20}),
         }
+
+
+class EditPollForm(forms.ModelForm):
+    class Meta:
+        model = Poll
+        fields = ['text', ]
+        widgets = {
+            'text': forms.Textarea(attrs={'class': 'form-control', 'rows': 5, 'cols': 20}),
