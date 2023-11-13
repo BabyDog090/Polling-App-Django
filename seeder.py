@@ -1,4 +1,3 @@
-from polls.models import Choice, Poll, Vote
 from django.contrib.auth.models import User
 import datetime
 import random
